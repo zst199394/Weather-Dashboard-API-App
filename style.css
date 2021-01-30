@@ -1,0 +1,14 @@
+html {
+    min-height: 100%;
+    background-image: url(./weather.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+ }
+.input {
+     position: fixed;
+     left:35%;
+     top :35%;
+     color :cornsilk;
+     font-size: 25px;
+ }
