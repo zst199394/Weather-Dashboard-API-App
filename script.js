@@ -7,8 +7,14 @@ $("#btn1").on("click",function(event){
 $("#searchBtn").on("click",function(event){
      event.preventDefault();
      var userInput =$("#input").val().trim();
-     localStorage.setItem("city",userInput);
-     $("#recentSearch").append("<li>");
+     var cities =JSON.parse(localStorage.getItem(city));
+     cities.push(userInput);
+     localStorage.setItem("city",JSON.stringify(cities));
+     for(var i=0;i< cities.length; i++){
+     var a=$("<li>");
+     a.text(cities[i]);
+     $("#recentSearch"),append(a);
+     }
 
 
 console.log(userInput);
