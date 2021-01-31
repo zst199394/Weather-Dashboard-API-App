@@ -5,10 +5,49 @@ html {
     background-repeat: no-repeat;
     background-position: center center;
  }
-.input {
+
+.first {
      position: fixed;
      left:35%;
      top :35%;
      color :cornsilk;
      font-size: 25px;
  }
+ aside {
+     background-color: aliceblue;
+     position: fixed;
+     left: 1%;
+     top: 10%;
+     width: 27%;
+     height: 80%;
+     border-radius: 5%;
+     color: rgb(12, 9, 70);
+     font-size: 20px;
+     padding-top: 5%;
+ }
+ #currentWeather {
+    background-color: aliceblue;
+    position: fixed;
+    right: 10%;
+    top: 10%;
+    width: 50%;
+    height: 30%;
+    border-radius: 8%;
+    color: rgb(12, 9, 70);
+    font-size: 20px;
+    padding-left: 3%;
+    padding-top: 1%;
+ }
+.futureWeather {
+    background-color: aliceblue;
+    position: fixed;
+    right: 10%;
+    top: 50%;
+    width: 50%;
+    height: 30%;
+    border-radius: 8%;
+    color: rgb(12, 9, 70);
+    font-size: 20px;
+    padding-left: 3%;
+    padding-top: 1%;
+}
