@@ -8,8 +8,7 @@ $("#searchBtn").on("click",function(event){
      event.preventDefault();
      var userInput =$("#input").val().trim();
      var cities =JSON.parse(localStorage.getItem(city));
-     cities.push(userInput);
-     localStorage.setItem("city",JSON.stringify(cities));
+     localStorage.setItem("city",JSON.stringify(userInput));
      for(var i=0;i< cities.length; i++){
      var a=$("<li>");
      a.text(cities[i]);
