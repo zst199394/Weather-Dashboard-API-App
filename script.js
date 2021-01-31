@@ -45,8 +45,8 @@ $.ajax({
 }).then(function(response){
     console.log("5daysresponse:")
     console.log(response)
+    
     var currentDay=moment().format("L");
-
     var b =$("<div>")
     b.text(userInput+" Today/"+currentDay)
     var c=$("<div>")
@@ -54,11 +54,11 @@ $.ajax({
     var d=$("<div>")
     d.text("Humidity:"+response.current.humidity+"%")
     var e=$("<div>")
-    e.text("Wind Speed:"+response.current.weather.wind_speed+"MPH")
+    e.text("Wind Speed:"+response.current.wind_speed+"MPH")
     var f=$("<div>")
     f.text("UV Index:"+response.current.uvi)
     $("#currentWeather").append(b,c,d,e,f);
-    
+    // if (response.daily[0].weather)
     var day1= $("<li>")
     day1.text(moment().add(1, 'days').format("L"))
     var weather1=$("<h6>") 
