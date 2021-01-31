@@ -4,31 +4,24 @@ $("#btn1").on("click",function(event){
     $(".page2").removeAttr("style");
     console.log("this function work !!!");
     
-});
-
-// var cities = JSON.parse(localStorage.getItem("city"));// || [];
-// function showHistory () {
-//   console.log("showHistory function works!", cities)
-//   for (var i=0; i< cities.length; i++){
-//       var a = $("<li>");
-//       a.text(cities[i]);
-//       $("#recentSearch").append(a);
-//   }
-// }
-// showHistory()
-
-$("#searchBtn").on("click", function(event) {
-    event.preventDefault();
-    $("#currentWeather").empty();
-    $("#futureList").empty();
-    var userInput = $('#input').val().trim();
-    // cities.push(userInput)
-    localStorage.setItem("city", JSON.stringify(userInput));
-    // showHistory()
-    // console.log(cities)
-
-
-var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" +userInput+ "&appid=adb5289082d713294f40248da64a0cf5";
+function showHistory () {
+    $("#searchBtn").on("click", function(event) {
+        event.preventDefault();
+        $("#input").empty();
+        $("#currentWeather").empty();
+        $("#futureList").empty();
+        var userInput = $('#input').val().trim();
+        // cities.push(userInput)
+        localStorage.setItem("recentSearch", JSON.stringify(userInput));
+        // console.log(cities)
+        showHistory()
+    });
+ var city = JSON.parse(localStorage.getItem("recentSearch"));// || [];
+  console.log("showHistory function works!", city)
+      var a = $("<li>");
+      a.text(city);
+      $("#recentSearch").prepend(a);
+      var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" +city+ "&appid=adb5289082d713294f40248da64a0cf5";
 $.ajax({
     url: queryURL,
     method: "GET"
@@ -45,10 +38,9 @@ $.ajax({
 }).then(function(response){
     console.log("5daysresponse:")
     console.log(response)
-    
     var currentDay=moment().format("L");
     var b =$("<div>")
-    b.text(userInput+" Today/"+currentDay)
+    b.text(city+" Today/"+currentDay)
     var c=$("<div>")
     c.text("Temp:"+response.current.temp+"°F")
     var d=$("<div>")
@@ -88,4 +80,13 @@ $.ajax({
     
 });
 });
+  }
+showHistory()
+
 });
+
+
+
+
+
+
