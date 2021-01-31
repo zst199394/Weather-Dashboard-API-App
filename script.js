@@ -19,10 +19,11 @@ $("#btn1").on("click",function(event){
 
 $("#searchBtn").on("click", function(event) {
     event.preventDefault();
+    $("#currentWeather").empty();
+    $("#futureList").empty();
     var userInput = $('#input').val().trim();
-
     // cities.push(userInput)
-    // localStorage.setItem("city", JSON.stringify(cities));
+    localStorage.setItem("city", JSON.stringify(userInput));
     // showHistory()
     // console.log(cities)
 
