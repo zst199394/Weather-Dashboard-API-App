@@ -3,19 +3,9 @@ $("#btn1").on("click",function(event){
     $(".page1").attr("style","display: none");
     $(".page2").removeAttr("style");
     console.log("this function work !!!");
+});
     
-function showHistory () {
-    $("#searchBtn").on("click", function(event) {
-        event.preventDefault();
-        $("#input").empty();
-        $("#currentWeather").empty();
-        $("#futureList").empty();
-        var userInput = $('#input').val().trim();
-        // cities.push(userInput)
-        localStorage.setItem("recentSearch", JSON.stringify(userInput));
-        // console.log(cities)
-        showHistory()
-    });
+function showHistory () { 
  var city = JSON.parse(localStorage.getItem("recentSearch"));// || [];
   console.log("showHistory function works!", city)
       var a = $("<li>");
@@ -81,8 +71,17 @@ $.ajax({
 });
 });
   }
-showHistory()
 
+$("#searchBtn").on("click", function(event) {
+    event.preventDefault();
+    $("#input").empty();
+    $("#currentWeather").empty();
+    $("#futureList").empty();
+    var userInput = $('#input').val().trim();
+    // cities.push(userInput)
+    localStorage.setItem("recentSearch", JSON.stringify(userInput));
+    // console.log(cities)
+    showHistory()
 });
 
 
