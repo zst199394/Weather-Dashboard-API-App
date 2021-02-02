@@ -1,17 +1,64 @@
+var cityArray = []; 
 $("#btn1").on("click",function(event){
     event.preventDefault();
     $(".page1").attr("style","display: none");
     $(".page2").removeAttr("style");
     console.log("this function work !!!");
-});
+    var userInput = $('#input').val().trim();
+    showHistory (userInput)
     
-function showHistory () { 
- var city = JSON.parse(localStorage.getItem("recentSearch"));// || [];
-  console.log("showHistory function works!", city)
+});
+   
+function showHistory (userInput) { 
+ var city = JSON.parse(localStorage.getItem("recentSearch"));
+//   cityArray=city;
+  console.log("showHistory function works!  city:", city)
+  console.log(userInput)
+//localStorage.setItem("recentSearch", JSON.stringify(cityArray));
+$("#recentSearch").empty();
+if (city === null) {
+    
+    // $("#input").attr("value","orlando")
+    cityArray.push(userInput);
+    localStorage.setItem("recentSearch", JSON.stringify(cityArray));
+    console.log("userInput:"+userInput,"cityArray:"+cityArray)
+    // for (var i =1;i<10 ;i++ ){
+    //     j=cityArray.length-i;
+          var a = $("<li>");
+          a.text(userInput);
+          $("#recentSearch").append(a);
+          $("#input").removeAttr("value")
+}
+else if(city !== null && userInput!==""){
+    $("#input").removeAttr("value");
+    cityArray=city;
+    cityArray.push(userInput);
+    localStorage.setItem("recentSearch", JSON.stringify(cityArray));
+    console.log("userInput:"+userInput,"cityArray:"+cityArray)
+for (var i =1;i<10 ;i++ ){
+    var j=cityArray.length-i;
       var a = $("<li>");
-      a.text(city);
-      $("#recentSearch").prepend(a);
-      var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" +city+ "&appid=adb5289082d713294f40248da64a0cf5";
+      a.text(cityArray[j]);
+      $("#recentSearch").append(a);
+ }     
+}
+else {
+    $("#input").removeAttr("value");
+    cityArray.push(userInput);
+    localStorage.setItem("recentSearch", JSON.stringify(cityArray));
+    console.log("userInput:"+userInput,"cityArray:"+cityArray)
+    for (var i =1;i<10 ;i++ ){
+        j=cityArray.length-i;
+          var a = $("<li>");
+          a.text(cityArray[j]);
+          $("#recentSearch").append(a);
+}
+}
+
+
+
+
+      var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" +userInput+ "&appid=adb5289082d713294f40248da64a0cf5";
 $.ajax({
     url: queryURL,
     method: "GET"
@@ -30,7 +77,7 @@ $.ajax({
     console.log(response)
     var currentDay=moment().format("L");
     var b =$("<div>")
-    b.text(city+" Today/"+currentDay)
+    b.text(userInput+" Today/"+currentDay)
     var c=$("<div>")
     c.text("Temp:"+response.current.temp+"°F")
     var d=$("<div>")
@@ -70,7 +117,7 @@ $.ajax({
     
 });
 });
-  }
+  };
 
 $("#searchBtn").on("click", function(event) {
     event.preventDefault();
@@ -78,14 +125,5 @@ $("#searchBtn").on("click", function(event) {
     $("#currentWeather").empty();
     $("#futureList").empty();
     var userInput = $('#input').val().trim();
-    // cities.push(userInput)
-    localStorage.setItem("recentSearch", JSON.stringify(userInput));
-    // console.log(cities)
-    showHistory()
+    showHistory(userInput)
 });
-
-
-
-
-
-
